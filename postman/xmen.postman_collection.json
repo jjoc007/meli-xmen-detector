@@ -1,0 +1,52 @@
+{
+	"info": {
+		"_postman_id": "82a2714c-8696-4a3c-9ec8-5c9e123309e3",
+		"name": "xmen",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "dna",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"dna\": [\r\n        \"CCCCGA\",\r\n        \"CAGTCC\",\r\n        \"GTTAGT\",\r\n        \"CGAAGG\",\r\n        \"TGTCTA\",\r\n        \"TCTCCC\"\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/mutant",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"mutant"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "stats",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/stats",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"stats"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

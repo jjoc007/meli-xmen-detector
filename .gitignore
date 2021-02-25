@@ -1,0 +1,5 @@
+.idea
+ms/build/*
+terraform/.terraform/*
+terraform/terraform.tfstate
+terraform/terraform.tfstate.backup
