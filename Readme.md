@@ -29,11 +29,23 @@
 * [K6](https://k6.io/docs/getting-started/installation)        
 * [Paquete aws-lambda-go](https://github.com/aws/aws-lambda-go) (Windows)        
         
-# Instalacion ### Generacion binarios mutant y stats: 1. Entrar carpeta ms/ 2. Ejecutar archivo `build.sh` ```  sh build.sh ``` ### Generar Infraestructura: 1. Entrar carpeta terraform/ 2. Crear variables de entorno de tu cuenta AWS:        
-    ```  sh         
-    export AWS_ACCESS_KEY_ID="xxxxxxx"        
- export AWS_SECRET_ACCESS_KEY="xxxxxxx" export AWS_SESSION_TOKEN="xxxxxxx" ```3. Ejecutar: ``` terraform init ``` 4. Ejecutar: ``` terraform plan ``` 5. Verificar  el inventario de recursos a crear dentro de tu cuenta aws        
-6. Ejecutar: ``` terraform apply ``` y al finalizar confirmar con ```yes```        
+# Instalacion 
+### Generacion binarios mutant y stats: 
+1. Entrar carpeta ms/ 
+2. Ejecutar archivo `build.sh` ```  sh build.sh ``` 
+### Generar Infraestructura: 
+1. Entrar carpeta terraform/ 
+2. Crear variables de entorno de tu cuenta AWS:        
+ ```
+ export AWS_ACCESS_KEY_ID="xxxxxxx"        
+ export AWS_SECRET_ACCESS_KEY="xxxxxxx" 
+ export AWS_SESSION_TOKEN="xxxxxxx" 
+ ```
+ 3. Ejecutar: ``` terraform init ``` 
+ 4. Ejecutar: ``` terraform plan ``` 
+ 5. Verificar  el inventario de recursos a crear dentro de tu cuenta aws        
+6. Ejecutar: ``` terraform apply ``` y al finalizar confirmar con ```yes``` 
+       
  ### Encontrar endpoint API :        
  Luego de ejecutar el apply de terraform encontraras la siguinte variable de salida:        
 ``` poc_endpoint_api_gateway = https://xxxxxxxx/dev ``` Este sera el endpoint en el cual podras  ejecutar los servicios para mas informacion en la documentacion de los servicios ver la seccion servicios        
@@ -54,8 +66,17 @@
 3. Si el registro no existe se hara el proceso de verificacion y se guardaran los resultados en la tabla      
 4. Por ultimo este resultado sera contabilizado en el registro almacenado en la tabla ```poc_stats_table``` y se actualizara el registro.      
       
-**Documentacion tecnica endpoint:**      
- |                || |----------------|-------------------------------------------------| |Endpoint                    | /mutant                             | |Method                      | POST                                | |Example Body                |![Ejemplo](./data/example-dna.PNG)   | |Status Code (es mutante)    |200                                  | |Status Code ( no es mutante)|403                                  |      
+**Documentacion tecnica endpoint:**   
+
+|                ||  
+|----------------|-------------------------------------------------|  
+|Endpoint                    | /mutant                             |  
+|Method                      | POST                                |  
+|Example Body                |![Ejemplo](./data/example-dna.PNG)   |  
+|Status Code (es mutante)    |200                                  |  
+|Status Code ( no es mutante)|403                                  |  
+   
+       
  **Restricciones**      
  - el atributo ```dna ``` debe ser un arreglo de strings y este debe conformar una matriz de NxM elementos siendo N cada elemento del arreglo y cada uno de los M cada letra dentro te cada elemento      
  - Solo se permiten los siguientes caracteres: **(A,T,C,G)**      
@@ -63,8 +84,16 @@
  Este servicio trae las estadisticas generales de los adns analizados.      
       
 **Documentacion tecnica endpoint:**      
-      
- |                || |----------------|-------------------------------------------------| |Endpoint                    |/stats| |Method                      |GET| |Status Code (es mutante)    |200                                  | |Ejemplo respuesta|![Ejemplo](./data/example-stats.PNG)|      
+
+ |                ||  
+ |----------------|-------------------------------------------------|  
+ |Endpoint                    |/stats|  
+ |Method                      |GET|  
+ |Status Code (es mutante)    |200                                  |  
+ |Ejemplo respuesta|![Ejemplo](./data/example-stats.PNG)|  
+   
+ >  Puede consultar los ejemplos en la coleccion de postman en la carpeta postman  
+       
  >  Puede consultar los ejemplos en la coleccion de postman en la carpeta postman # Pruebas Unitarias        
  Cobertura en pruebas unitarias : **67.7%**      
  ![Cobertura](./data/cobertura.png)      
@@ -78,17 +107,34 @@
 1. entrar carpeta load-test:      
 2. Ejecutar comando:      
 ```      
- (Ejecutar prueba de humo) k6 run -e TYPE_TEST=smoke_test --summary-export results/dna/summary-smoke-test.json src/services/dna/index.js (Ejecutar prueba de carga) k6 run -e TYPE_TEST=load_test --summary-export results/dna/summary-smoke-test.json src/services/dna/index.js (Ejecutar prueba de estres) k6 run -e TYPE_TEST=stress_test --summary-export results/dna/summary-smoke-test.json src/services/dna/index.js      
- flags adicionales:      
+ (Ejecutar prueba de humo) 
+k6 run -e TYPE_TEST=smoke_test --summary-export results/dna/summary-smoke-test.json src/services/dna/index.js 
+(Ejecutar prueba de carga)
+ k6 run -e TYPE_TEST=load_test --summary-export results/dna/summary-smoke-test.json src/services/dna/index.js 
+(Ejecutar prueba de estres)
+ k6 run -e TYPE_TEST=stress_test --summary-export results/dna/summary-smoke-test.json src/services/dna/index.js      
+ 
+flags adicionales:      
  si usas influxdb para almacenar resultados y mostrarlos por grafana. --out influxdb=http://localhost:8086/k6      
  ```      
- ## Resultados DNA prueba de carga (grafana): ### Duracion de peticiones: ![Duracion](./load-test/data/dna/load/duration.png)      
- ### Usuarios concurrentes en el tiempo: ![vus](./load-test/data/dna/load/vus.png)      
- ### Conteo de peticiones cuando son mutantes: ![conteo](./load-test/data/dna/load/counts-200.png)     
- ### Conteo de peticiones cuando no son mutantes: ![conteo](./load-test/data/dna/load/counts-403.png)      
- ### Metricas generales prueba: ![conteo](./load-test/data/dna/load/metrics.png)    
- ## Resultados DNA prueba de estres (grafana): ### Duracion de peticiones: ![Duracion](./load-test/data/dna/stress/duration.png)      
- ### Usuarios concurrentes en el tiempo: ![vus](./load-test/data/dna/stress/vus.png)      
- ### Conteo de peticiones cuando son mutantes: ![conteo](./load-test/data/dna/stress/counts-200.PNG)     
- ### Conteo de peticiones cuando no son mutantes: ![conteo](./load-test/data/dna/stress/counts-403.png)     
- ### Metricas generales prueba: ![conteo](./load-test/data/dna/stress/metrics.png)
+ ## Resultados DNA prueba de carga (grafana): 
+ ### Duracion de peticiones: 
+ ![Duracion](./load-test/data/dna/load/duration.png)      
+ ### Usuarios concurrentes en el tiempo: 
+ ![vus](./load-test/data/dna/load/vus.png)      
+ ### Conteo de peticiones cuando son mutantes: 
+ ![conteo](./load-test/data/dna/load/counts-200.png)     
+ ### Conteo de peticiones cuando no son mutantes: 
+ ![conteo](./load-test/data/dna/load/counts-403.png)      
+ ### Metricas generales prueba: 
+ ![conteo](./load-test/data/dna/load/metrics.png)    
+ ## Resultados DNA prueba de estres (grafana): 
+ ### Duracion de peticiones: ![Duracion](./load-test/data/dna/stress/duration.png)      
+ ### Usuarios concurrentes en el tiempo: 
+ ![vus](./load-test/data/dna/stress/vus.png)      
+ ### Conteo de peticiones cuando son mutantes: 
+ ![conteo](./load-test/data/dna/stress/counts-200.PNG)     
+ ### Conteo de peticiones cuando no son mutantes:
+  ![conteo](./load-test/data/dna/stress/counts-403.png)     
+ ### Metricas generales prueba: 
+ ![conteo](./load-test/data/dna/stress/metrics.png)
