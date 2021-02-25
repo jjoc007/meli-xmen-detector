@@ -48,7 +48,9 @@
        
  ### Encontrar endpoint API :        
  Luego de ejecutar el apply de terraform encontraras la siguinte variable de salida:        
-``` poc_endpoint_api_gateway = https://xxxxxxxx/dev ``` Este sera el endpoint en el cual podras  ejecutar los servicios para mas informacion en la documentacion de los servicios ver la seccion servicios        
+``` poc_endpoint_api_gateway = https://xxxxxxxx/dev ``` Este sera el endpoint en el cual podras  ejecutar los servicios 
+
+> Para mas informacion en la documentacion de los servicios ver la seccion servicios        
         
 # Arquitectura        
  El despliegue de la aplicacion se realiza en Amazon Web Services y tiene la siguiente arquitectura:        
