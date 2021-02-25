@@ -91,10 +91,10 @@
  |Method                      |GET|  
  |Status Code (es mutante)    |200                                  |  
  |Ejemplo respuesta|![Ejemplo](./data/example-stats.PNG)|  
-   
- >  Puede consultar los ejemplos en la coleccion de postman en la carpeta postman  
+     
        
- >  Puede consultar los ejemplos en la coleccion de postman en la carpeta postman # Pruebas Unitarias        
+ >  Puede consultar los ejemplos en la coleccion de postman en la carpeta postman 
+# Pruebas Unitarias        
  Cobertura en pruebas unitarias : **67.7%**      
  ![Cobertura](./data/cobertura.PNG)      
        
