@@ -97,7 +97,7 @@
        
  >  Puede consultar los ejemplos en la coleccion de postman en la carpeta postman 
 # Pruebas Unitarias        
- Cobertura en pruebas unitarias : **67.7%**      
+ Cobertura en pruebas unitarias : **75%**      
  ![Cobertura](./data/cobertura.PNG)      
        
  ## [Reporte de cobertura](./coverage/report.html)      
