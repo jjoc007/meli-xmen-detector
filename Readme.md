@@ -119,22 +119,23 @@ flags adicionales:
  ```      
  ## Resultados DNA prueba de carga (grafana): 
  ### Duracion de peticiones: 
- ![Duracion](./load-test/data/dna/load/duration.png)      
+ ![Duracion](./load-test/data/dna/load/duration.PNG)      
  ### Usuarios concurrentes en el tiempo: 
- ![vus](./load-test/data/dna/load/vus.png)      
+ ![vus](./load-test/data/dna/load/vus.PNG)      
  ### Conteo de peticiones cuando son mutantes: 
- ![conteo](./load-test/data/dna/load/counts-200.png)     
+ ![conteo](./load-test/data/dna/load/counts-200.PNG)     
  ### Conteo de peticiones cuando no son mutantes: 
- ![conteo](./load-test/data/dna/load/counts-403.png)      
+ ![conteo](./load-test/data/dna/load/counts-403.PNG)      
  ### Metricas generales prueba: 
- ![conteo](./load-test/data/dna/load/metrics.png)    
+ ![conteo](./load-test/data/dna/load/metrics.PNG)    
  ## Resultados DNA prueba de estres (grafana): 
- ### Duracion de peticiones: ![Duracion](./load-test/data/dna/stress/duration.png)      
+ ### Duracion de peticiones: 
+ ![Duracion](./load-test/data/dna/stress/duration.png)      
  ### Usuarios concurrentes en el tiempo: 
  ![vus](./load-test/data/dna/stress/vus.png)      
  ### Conteo de peticiones cuando son mutantes: 
  ![conteo](./load-test/data/dna/stress/counts-200.PNG)     
  ### Conteo de peticiones cuando no son mutantes:
-  ![conteo](./load-test/data/dna/stress/counts-403.png)     
+  ![conteo](./load-test/data/dna/stress/counts-403.PNG)     
  ### Metricas generales prueba: 
  ![conteo](./load-test/data/dna/stress/metrics.png)
